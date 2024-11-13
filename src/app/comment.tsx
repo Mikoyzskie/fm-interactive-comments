@@ -93,14 +93,15 @@ export default function Comment() {
         </div>
       </div>
 
-      <div className='bg-white rounded-lg p-6 flex motion-preset-slide-down mb-5 justify-self-end items-start gap-4'>
+      <div className='bg-white rounded-lg p-6 flex mb-5 justify-self-end items-start gap-4'>
         <Image
           height={40}
           width={40}
           alt='avatar'
           src={"/images/avatars/image-amyrobson.png"}
+          className='h-10 w-10'
         />
-        <textarea placeholder='Add a comment...' className='outline-none h-24 w-full border border-[#E9EBF0] py-3 px-6 rounded-lg'></textarea>
+        <textarea placeholder='Add a comment...' className='outline-none h-24 w-full border border-[#E9EBF0] py-3 px-6 rounded-lg focus:border-[#5357B6]'></textarea>
         <button className='font-medium text-white px-[30px] py-3 bg-[#5357B6] rounded-lg'>SEND</button>
       </div>
     </div>
