@@ -86,7 +86,7 @@ export default function Comment() {
                     </button>
                   </div>
                 </div>
-                <p className='text-[#67727E]'>Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You’ve nailed the design and the responsiveness at various breakpoints works really well.</p>
+                <textarea className='text-[#67727E] h-fit outline-none' defaultValue={"Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You’ve nailed the design and the responsiveness at various breakpoints works really well."} />
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@ export default function Comment() {
           src={"/images/avatars/image-amyrobson.png"}
           className='h-10 w-10'
         />
-        <textarea placeholder='Add a comment...' className='outline-none h-24 w-full border border-[#E9EBF0] py-3 px-6 rounded-lg focus:border-[#5357B6]'></textarea>
+        <textarea placeholder='Add a comment...' className='outline-none h-24 w-full border border-[#E9EBF0] py-3 px-6 rounded-lg focus:border-[#5357B6] resize-none'></textarea>
         <button className='font-medium text-white px-[30px] py-3 bg-[#5357B6] rounded-lg'>SEND</button>
       </div>
     </div>
