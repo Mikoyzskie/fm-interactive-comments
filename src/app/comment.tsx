@@ -4,6 +4,8 @@
 import Image from 'next/image'
 // import clsx from 'clsx'
 
+import TextArea from './textarea'
+
 import Vote from './vote'
 
 export default function Comment() {
@@ -61,10 +63,10 @@ export default function Comment() {
                 <p className='text-[#67727E]'>Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You’ve nailed the design and the responsiveness at various breakpoints works really well.</p>
               </div>
             </div>
-            <div className='bg-white rounded-lg p-6 flex gap-6 motion-preset-slide-down'>
+            <div className='bg-white rounded-lg p-6 flex gap-6 motion-preset-slide-down h-full'>
               <Vote />
-              <div className='grow flex flex-col gap-[15px]'>
-                <div className='flex justify-between'>
+              <div className='grow flex flex-col gap-[15px] h-fit'>
+                <div className='flex justify-between h-full'>
                   <div className='flex gap-4 items-center'>
                     <Image
                       height={32}
@@ -86,7 +88,7 @@ export default function Comment() {
                     </button>
                   </div>
                 </div>
-                <textarea className='text-[#67727E] h-fit outline-none' defaultValue={"Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You’ve nailed the design and the responsiveness at various breakpoints works really well."} />
+                <TextArea text='Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You’ve nailed the design and the responsiveness at various breakpoints works really well.' />
               </div>
             </div>
           </div>
