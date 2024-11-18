@@ -25,7 +25,6 @@ export default function TextArea({ text }: { text: string }) {
       const length = textAreaRef.current.value.length;
       textAreaRef.current.setSelectionRange(length, length);
     }
-
   }, [])
 
   return (
