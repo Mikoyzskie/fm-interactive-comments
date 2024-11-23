@@ -1,35 +1,46 @@
 "use client"
-import clsx from "clsx"
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react"
+
+import { useCallback, useState } from "react"
+
+// import clsx from "clsx"
+// import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react"
 import Image from 'next/image'
 // import clsx from 'clsx'
+
+
 
 import Vote from './vote'
 
 export default function Comment() {
 
-  const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
-  const [val, setValue] = useState<string>('Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You’ve nailed the design and the responsiveness at various breakpoints works really well.')
-  const [focused, setFocused] = useState<boolean>(false)
+  const [replyVisible, setReplyVisible] = useState<boolean>(false);
 
-  const handleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.target.value)
-  }
-
-  useEffect(() => {
-    if (textAreaRef.current) {
-      textAreaRef.current.style.height = "auto"
-      textAreaRef.current.style.height = `${focused ? textAreaRef.current.scrollHeight + 1 : textAreaRef.current.scrollHeight}px`;
-    }
-  }, [val, focused]);
-
-  const handleEditComment = useCallback(() => {
-    if (textAreaRef.current) {
-      textAreaRef.current.focus();
-      const length = textAreaRef.current.value.length;
-      textAreaRef.current.setSelectionRange(length, length);
-    }
+  const handleReplyVisible = useCallback(() => {
+    setReplyVisible(true)
   }, [])
+
+  // const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
+  // const [val, setValue] = useState<string>('Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You’ve nailed the design and the responsiveness at various breakpoints works really well.')
+  // const [focused, setFocused] = useState<boolean>(false)
+
+  // const handleOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  //   setValue(e.target.value)
+  // }
+
+  // useEffect(() => {
+  //   if (textAreaRef.current) {
+  //     textAreaRef.current.style.height = "auto"
+  //     textAreaRef.current.style.height = `${focused ? textAreaRef.current.scrollHeight + 1 : textAreaRef.current.scrollHeight}px`;
+  //   }
+  // }, [val, focused]);
+
+  // const handleEditComment = useCallback(() => {
+  //   if (textAreaRef.current) {
+  //     textAreaRef.current.focus();
+  //     const length = textAreaRef.current.value.length;
+  //     textAreaRef.current.setSelectionRange(length, length);
+  //   }
+  // }, [])
 
   return (
     <div className='flex flex-col gap-5 justify-between h-full'>
@@ -60,29 +71,45 @@ export default function Comment() {
         <div className='flex'>
           <div className='w-[2px] h-auto bg-[#E9EBF0] mx-[43px]' />
           <div className='flex flex-col gap-5'>
-            <div className='bg-white rounded-lg p-6 flex gap-6 motion-preset-slide-down'>
-              <Vote />
-              <div className='grow flex flex-col gap-[15px]'>
-                <div className='flex justify-between'>
-                  <div className='flex gap-4 items-center'>
-                    <Image
-                      height={32}
-                      width={32}
-                      alt='avatar'
-                      src={"/images/avatars/image-amyrobson.png"}
-                    />
-                    <span className='font-medium'>maxblagun</span>
-                    <span className='text-[#67727E]'>2 weeks ago</span>
+            <div className='flex flex-col gap-4'>
+              <div className='bg-white rounded-lg p-6 flex gap-6 motion-preset-slide-down'>
+                <Vote />
+                <div className='grow flex flex-col gap-[15px]'>
+                  <div className='flex justify-between'>
+                    <div className='flex gap-4 items-center'>
+                      <Image
+                        height={32}
+                        width={32}
+                        alt='avatar'
+                        src={"/images/avatars/image-amyrobson.png"}
+                      />
+                      <span className='font-medium'>maxblagun</span>
+                      <span className='text-[#67727E]'>2 weeks ago</span>
+                    </div>
+                    <button className='font-medium flex items-center gap-2 text-[#5357B6]' onClick={handleReplyVisible}>
+                      <svg width="14" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M.227 4.316 5.04.16a.657.657 0 0 1 1.085.497v2.189c4.392.05 7.875.93 7.875 5.093 0 1.68-1.082 3.344-2.279 4.214-.373.272-.905-.07-.767-.51 1.24-3.964-.588-5.017-4.829-5.078v2.404c0 .566-.664.86-1.085.496L.227 5.31a.657.657 0 0 1 0-.993Z" fill="#5357B6" /></svg>
+                      Reply
+                    </button>
                   </div>
-                  <button className='font-medium flex items-center gap-2 text-[#5357B6]'>
-                    <svg width="14" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M.227 4.316 5.04.16a.657.657 0 0 1 1.085.497v2.189c4.392.05 7.875.93 7.875 5.093 0 1.68-1.082 3.344-2.279 4.214-.373.272-.905-.07-.767-.51 1.24-3.964-.588-5.017-4.829-5.078v2.404c0 .566-.664.86-1.085.496L.227 5.31a.657.657 0 0 1 0-.993Z" fill="#5357B6" /></svg>
-                    Reply
-                  </button>
+                  <p className='text-[#67727E]'>Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You’ve nailed the design and the responsiveness at various breakpoints works really well.</p>
                 </div>
-                <p className='text-[#67727E]'>Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You’ve nailed the design and the responsiveness at various breakpoints works really well.</p>
               </div>
+              {
+                replyVisible &&
+                <div className='bg-white rounded-lg p-6 flex mb-5 justify-self-end items-start gap-4 motion-preset-slide-down'>
+                  <Image
+                    height={40}
+                    width={40}
+                    alt='avatar'
+                    src={"/images/avatars/image-amyrobson.png"}
+                    className='h-10 w-10'
+                  />
+                  <textarea placeholder='Add a comment...' className='outline-none h-24 w-full border border-[#E9EBF0] py-3 px-6 rounded-lg focus:border-[#5357B6] resize-none'></textarea>
+                  <button className='font-medium text-white px-[30px] py-3 bg-[#5357B6] rounded-lg'>SEND</button>
+                </div>
+              }
             </div>
-            <div className='bg-white rounded-lg p-6 flex gap-6 motion-preset-slide-down h-full'>
+            {/* <div className='bg-white rounded-lg p-6 flex gap-6 motion-preset-slide-down h-full'>
               <Vote />
               <div className='grow flex flex-col gap-[15px] h-fit'>
                 <div className='flex justify-between h-full'>
@@ -124,7 +151,7 @@ export default function Comment() {
                 </div>
 
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
